@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1080.0" stylesheets="@dashboardDesign.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.gumana.ProtoController">
+   <children>
+      <AnchorPane layoutX="313.0" layoutY="137.0" prefHeight="433.0" prefWidth="458.0" styleClass="nav-form" stylesheets="@design.css">
+         <children>
+            <Button fx:id="btn_balik" mnemonicParsing="false" onAction="#btn_balik" prefHeight="44.0" prefWidth="37.0" styleClass="table-view" text="&lt;">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnLogn" layoutX="143.0" layoutY="341.0" mnemonicParsing="false" onAction="#btn_login" prefHeight="44.0" prefWidth="171.0" styleClass="update-btn" text="LOGIN">
+               <font>
+                  <Font name="Arial Bold" size="37.0" />
+               </font>
+            </Button>
+            <Label layoutX="109.0" layoutY="96.0" text="MONITORING SYSTEM" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="50.0" layoutY="60.0" text="COMPUTER HARDWARE" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="30.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+      <Label layoutX="369.0" layoutY="316.0" text="Username:" textFill="WHITE">
+         <font>
+            <Font name="Arial" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="371.0" layoutY="392.0" text="Password:" textFill="WHITE">
+         <font>
+            <Font name="Arial" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="lbl_username" layoutX="469.0" layoutY="309.0" prefHeight="36.0" prefWidth="237.0" />
+      <PasswordField fx:id="lbl_password" layoutX="469.0" layoutY="385.0" prefHeight="36.0" prefWidth="238.0" />
+   </children>
+   <styleClass>
+      <String fx:value="card" />
+      <String fx:value="semi-top-form" />
+   </styleClass>
+</AnchorPane>

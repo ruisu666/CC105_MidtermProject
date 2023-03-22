@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.gumana.FXML_ManageProductController">
+   <children>
+      <AnchorPane layoutY="-3.0" prefHeight="726.0" prefWidth="306.0" styleClass="nav-form" stylesheets="@dashboardDesign.css">
+         <children>
+            <Label layoutX="82.0" layoutY="36.0" text="Welcome," textFill="WHITE">
+               <font>
+                  <Font name="Tahoma" size="30.0" />
+               </font>
+            </Label>
+            <Label fx:id="username" alignment="CENTER" layoutX="31.0" layoutY="74.0" prefHeight="54.0" prefWidth="231.0" text="Username" textFill="WHITE">
+               <font>
+                  <Font name="Tahoma" size="30.0" />
+               </font>
+            </Label>
+            <Line endX="-130.5999755859375" endY="6.399993896484375" layoutX="401.0" layoutY="132.0" startX="-369.3999328613281" startY="6.399993896484375" stroke="WHITE" />
+            <Button fx:id="btn_logout" layoutX="72.0" layoutY="616.0" mnemonicParsing="false" onAction="#btn_logout" prefHeight="35.0" prefWidth="150.0" styleClass="add-btn" stylesheets="@dashboardDesign.css" text="Logout" />
+            <Button fx:id="homeButton" layoutX="48.0" layoutY="190.0" mnemonicParsing="false" onAction="#homeButton" prefHeight="46.0" prefWidth="197.0" styleClass="update-btn" stylesheets="@dashboardDesign.css" text="Home" />
+            <Button fx:id="addProductButton" layoutX="46.0" layoutY="265.0" mnemonicParsing="false" onAction="#addProductButton" prefHeight="48.0" prefWidth="199.0" styleClass="update-btn" stylesheets="@dashboardDesign.css" text="Add a Product" />
+            <Button fx:id="viewDetailsbtn" layoutX="48.0" layoutY="338.0" mnemonicParsing="false" onAction="#actionViewProducts" prefHeight="50.0" prefWidth="198.0" styleClass="update-btn" stylesheets="@dashboardDesign.css" text="Product Details" />
+            <Button fx:id="manageProductsbtn" layoutX="47.0" layoutY="413.0" mnemonicParsing="false" onAction="#actionManageProducts" prefHeight="50.0" prefWidth="198.0" styleClass="update-btn" stylesheets="@dashboardDesign.css" text="Manage Products" />
+         </children>
+      </AnchorPane>
+      <Pane layoutX="306.0" prefHeight="720.0" prefWidth="774.0" styleClass="card" stylesheets="@dashboardDesign.css">
+         <children>
+            <Label layoutX="30.0" layoutY="25.0" text="MANAGE PRODUCTS" textFill="WHITE">
+               <font>
+                  <Font name="Tahoma" size="26.0" />
+               </font>
+            </Label>
+            <Pane layoutX="27.0" layoutY="157.0" prefHeight="463.0" prefWidth="721.0" styleClass="table-view" stylesheets="@dashboardDesign.css">
+               <children>
+                  <TableView fx:id="viewProduct" prefHeight="463.0" prefWidth="721.0">
+                    <columns>
+                      <TableColumn prefWidth="211.20001220703125" text="Name" />
+                      <TableColumn prefWidth="107.99993896484375" text="Price" />
+                        <TableColumn prefWidth="55.20001220703125" text="Quantity" />
+                        <TableColumn prefWidth="86.39996337890625" text="Model" />
+                        <TableColumn prefWidth="140.0" text="Brand" />
+                        <TableColumn prefWidth="115.199951171875" text="Category" />
+                    </columns>
+                  </TableView>
+               </children>
+            </Pane>
+            <AnchorPane layoutX="30.0" layoutY="91.0" prefHeight="57.0" prefWidth="384.0" styleClass="table-view" stylesheets="@dashboardDesign.css">
+               <children>
+                  <Label layoutX="17.0" layoutY="16.0" prefHeight="25.0" prefWidth="61.0" text="SEARCH:" textFill="WHITE">
+                     <font>
+                        <Font name="Arial" size="12.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="textSearch" layoutX="80.0" layoutY="15.0" prefHeight="25.0" prefWidth="185.0" />
+                  <Button fx:id="searchbtn" layoutX="283.0" layoutY="15.0" mnemonicParsing="false" onAction="#searchbtn" prefHeight="26.0" prefWidth="78.0" styleClass="update-btn" stylesheets="@dashboardDesign.css" text="Home" />
+                  
+               </children>
+            </AnchorPane>
+            <Button fx:id="btn_update" layoutX="430.0" layoutY="101.0" mnemonicParsing="false" onAction="#btn_actionUpdate" prefHeight="38.0" prefWidth="130.0" styleClass="update-btn" stylesheets="@dashboardDesign.css" text="UPDATE" />
+            <Button fx:id="btn_delete" layoutX="575.0" layoutY="101.0" mnemonicParsing="false" onAction="#btn_actionDelete" prefHeight="38.0" prefWidth="130.0" styleClass="update-btn" stylesheets="@dashboardDesign.css" text="UPDATE" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
