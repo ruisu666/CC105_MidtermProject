@@ -59,7 +59,7 @@
             <Font name="Tahoma" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="txt_productQuantity" layoutX="39.0" layoutY="250.0" prefHeight="26.0" prefWidth="295.0" promptText="Name of Product" />
+      <TextField fx:id="txt_productQuantity" layoutX="39.0" layoutY="250.0" prefHeight="26.0" prefWidth="295.0" promptText="Quantity in stock" />
       <Button id="btn_addCategory" layoutX="334.0" layoutY="376.0" mnemonicParsing="false" onAction="#btn_addProduct" prefHeight="36.0" prefWidth="113.0" style="-fx-background-color: #2ca772;" styleClass="btn_addCategory" stylesheets="@design.css" text="Add Product" textFill="WHITE" />
    </children>
 </AnchorPane>

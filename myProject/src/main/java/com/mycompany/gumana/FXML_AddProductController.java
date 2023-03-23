@@ -29,6 +29,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -53,6 +54,7 @@ public class FXML_AddProductController implements Initializable {
     private TextField txt_productQuantity;
 
     private ObservableList<String> Category = FXCollections.observableArrayList();
+
     /**
      * Initializes the controller class.
      */
@@ -67,28 +69,41 @@ public class FXML_AddProductController implements Initializable {
         Category.add("Laptop");
         Category.add("Webcam");
         Category.add("Miscellaneous");
-        cb_category.setItems(Category);   
+        cb_category.setItems(Category);
+
+        txt_productPrice.setTextFormatter(new TextFormatter<>(change -> {
+            if (change.isAdded()) {
+                if (change.getControlNewText().matches("[0-9]{1,}")) {
+                    return change;
+                }
+                return null;
+            }
+            return change;
+        }));
+
     }
 
     private Connection conn = null;
     private PreparedStatement statement;
     private ResultSet result;
-    
-    public Connection connectDB(){  
-        try{
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/myproject_db","root","");
+
+    public Connection connectDB() {
+        try {
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/myproject_db", "root", "");
             return conn;
-        }catch (SQLException e){e.printStackTrace();}
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
-    private void addProductButton(ActionEvent event)throws IOException{
+    private void addProductButton(ActionEvent event) throws IOException {
         App.setRoot("FXML_AddProduct");
     }
 
     private void btn_logout(ActionEvent event) {
-        new Alert(Alert.AlertType.CONFIRMATION,"Are you sure you want to logout?").showAndWait().ifPresent(response->{
-            if (response == ButtonType.OK){
+        new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to logout?").showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
                 try {
                     App.setRoot("FXML_FirstScreen");
                 } catch (IOException ex) {
@@ -100,15 +115,7 @@ public class FXML_AddProductController implements Initializable {
 
     @FXML
     private void btn_addProduct(ActionEvent event) {
-        conn = connectDB();
-        String productName, productPrice, productQuantity, productModel, productBrand, productCategory;
-        productName = txt_productName.getText();
-        productPrice = txt_productPrice.getText();
-        productQuantity = txt_productQuantity.getText();
-        productModel = txt_productModelnum.getText();
-        productBrand = txt_productBrand.getText();
-        productCategory = cb_category.getValue();
-        
+
         Alert alrt = new Alert(Alert.AlertType.NONE, "", new ButtonType("Try Again"));
         final String INVALID_INPUT = "Invalid Input";
         Boolean invalidInp = false;
@@ -137,34 +144,40 @@ public class FXML_AddProductController implements Initializable {
             alrt.setTitle(INVALID_INPUT);
             alrt.setContentText(alrt.getContentText() + "Missing Product Brand\n");
         }
-        if (cb_category.getValue() == null){
+        if (cb_category.getValue() == null) {
             alrt.setTitle(INVALID_INPUT);
             alrt.setContentText(alrt.getContentText() + "Missing Category\n");
         }
-        if(invalidInp){
+        if (invalidInp) {
             alrt.show();
             return;
         }
-        
+
+        conn = connectDB();
+        String productName, productModel, productBrand, productCategory;
+        Integer productPrice, productQuantity;
+        productName = txt_productName.getText();
+        productPrice = Integer.valueOf(txt_productPrice.getText());
+        productQuantity = Integer.valueOf(txt_productQuantity.getText());
+        productModel = txt_productModelnum.getText();
+        productBrand = txt_productBrand.getText();
+        productCategory = cb_category.getValue();
+
         new Alert(Alert.AlertType.CONFIRMATION, "Do you want to add this product?").showAndWait().ifPresent(new Consumer<ButtonType>() {
             @Override
             public void accept(ButtonType response) {
                 if (response == ButtonType.OK) {
                     try {
-                        String sql = "INSERT INTO `tbl_products`(`productName`,`productPrice`,`productQuantity`,`productModel`, `productBrand`, `productCategory`) VALUES ('"+productName+"','"+productPrice+"','"+productQuantity+"','"+productModel+"','"+productBrand+"','"+productCategory+"')";                  
+                        String sql = "INSERT INTO `tbl_products`(`productName`,`productPrice`,`productQuantity`,`productModel`, `productBrand`, `productCategory`) VALUES ('" + productName + "','" + productPrice + "','" + productQuantity + "','" + productModel + "','" + productBrand + "','" + productCategory + "')";
                         statement = conn.prepareStatement(sql);
                         statement.executeUpdate();
-                        App.setRoot("FXML_Dashboard");
-                        new Alert(Alert.AlertType.INFORMATION,"Succesfully added!").show();
-                    } catch (IOException e) {
+                        new Alert(Alert.AlertType.INFORMATION, "Succesfully added!").show();
+                    } catch (SQLException e) {
                         System.out.println(e.getMessage());
-                    } catch (SQLException x){
-                        System.out.println(x.getMessage());
                     }
                 }
             }
         });
     }
 
-    
 }

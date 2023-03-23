@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.BarChart;
@@ -17,6 +18,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class FXML_DashboardController implements Initializable{
@@ -48,7 +50,9 @@ public class FXML_DashboardController implements Initializable{
                 newWindow.setTitle("Add Product");
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("FXML_AddProduct.fxml"));
                 newWindow.setScene(new Scene(loader.load()));
-                newWindow.show();
+                newWindow.initModality(Modality.APPLICATION_MODAL);
+                newWindow.initOwner(((Node)event.getSource()).getScene().getWindow());
+                newWindow.showAndWait();
     }
 
     @FXML
