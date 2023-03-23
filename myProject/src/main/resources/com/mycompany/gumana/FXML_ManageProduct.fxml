@@ -47,7 +47,7 @@
                       <TableColumn fx:id="colPrice" prefWidth="107.99993896484375" text="Price" />
                         <TableColumn fx:id="colQuantity" prefWidth="55.20001220703125" text="Quantity" />
                         <TableColumn fx:id="colModel" prefWidth="86.39996337890625" text="Model" />
-                        <TableColumn fx:id="colBranch" prefWidth="140.0" text="Brand" />
+                        <TableColumn fx:id="colBrand" prefWidth="140.0" text="Brand" />
                         <TableColumn fx:id="colCat" prefWidth="115.199951171875" text="Category" />
                     </columns>
                   </TableView>
