@@ -69,11 +69,13 @@ public class FXML_SignupController implements Initializable {
             conn = DriverManager.getConnection("jdbc:mysql://localhost/myproject_db","root","");
             return conn;
         }catch (SQLException e){
-        }
+            e.printStackTrace();
             return null;
+        }
+            
     }
     @FXML
-    private void btn_register(ActionEvent event) throws SQLException {
+    private void btn_register(ActionEvent event){
         conn = connectDB();
         String Username, Password, lastName, firstName;
         firstName = txt_firstName.getText();
@@ -133,12 +135,13 @@ public class FXML_SignupController implements Initializable {
                     try {
                         String sql = "INSERT INTO `tbl_accounts`(`lastName`,`firstName`,`gender`,`username`, `password`) VALUES ('"+lastName+"','"+firstName+"','"+gender+"','"+Username+"','"+Password+"')";                  
                         statement = conn.prepareStatement(sql);
-                        statement.executeUpdate();
+                        statement.execute();
                         App.setRoot("FXML_Login");
                         new Alert(Alert.AlertType.INFORMATION,"Succesfully registered").show();
                     } catch (IOException e) {
                         System.out.println(e.getMessage());
                     } catch (SQLException x){
+                        x.printStackTrace();
                         new Alert(Alert.AlertType.WARNING,"This "+Username+" already exists").show();
                     }
                 }

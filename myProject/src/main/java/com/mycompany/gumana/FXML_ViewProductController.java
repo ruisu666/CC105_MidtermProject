@@ -6,20 +6,32 @@ package com.mycompany.gumana;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -43,24 +55,91 @@ public class FXML_ViewProductController implements Initializable {
     @FXML
     private Button manageProductsbtn;
     @FXML
-    private TableView<?> viewProduct;
+    private TableView<ProductModel> viewProduct;
     @FXML
     private TextField textSearch;
     @FXML
-    private Button searchbtn;
+    private TableColumn<ProductModel, String> colName;
+    @FXML
+    private TableColumn<ProductModel, Integer> colPrice;
+    @FXML
+    private TableColumn<ProductModel, Integer> colQuantity;
+    @FXML
+    private TableColumn<ProductModel, String> colModel;
+    @FXML
+    private TableColumn<ProductModel, String> colCat;
+
+    private ObservableList<ProductModel> prodList = FXCollections.observableArrayList();
+    
+    private Connection conn = null;
+    private PreparedStatement stmnt = null;
+    @FXML
+    private TableColumn<?, ?> colBrand;
 
     /**
      * Initializes the controller class.
      */
+
+    public Connection connectDB() {
+        try {
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/myproject_db", "root", "");
+            return conn;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private void RefreshProdList() throws SQLException {
+        conn = connectDB();
+        stmnt = conn.prepareStatement("SELECT * FROM `tbl_products`");
+        ResultSet result = stmnt.executeQuery();
+        prodList.clear();
+        while(result.next()){
+            prodList.add(new ProductModel(result.getString("productName"),result.getInt("productPrice"),result.getInt("productQuantity"),result.getString("productModel"),result.getString("productBrand"),result.getString("productCategory")));
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-      username.setText(App.getCurrUser().getUsername());
-    }    
+        username.setText(App.getCurrUser().getUsername());
+        try {
+            RefreshProdList();
+        } catch (SQLException ex) {
+            new Alert(AlertType.ERROR,"Failed to Refresh Product List").show();
+        }
+        colName.setCellValueFactory(new PropertyValueFactory("name"));
+        colPrice.setCellValueFactory(new PropertyValueFactory("price"));
+        colQuantity.setCellValueFactory(new PropertyValueFactory("quantity"));
+        colModel.setCellValueFactory(new PropertyValueFactory("model"));
+        colBrand.setCellValueFactory(new PropertyValueFactory("brand"));
+        colCat.setCellValueFactory(new PropertyValueFactory("category"));
+        viewProduct.setItems(prodList);
+        
+        FilteredList <ProductModel>filter = new FilteredList(prodList);
+        textSearch.textProperty().addListener((obj,oldVal,newVal) ->{
+            filter.setPredicate(prodModel->{
+                if(newVal.isBlank()||newVal.isEmpty()||newVal == null){
+                    return true;
+                } 
+                String keyword = newVal.toLowerCase();
+
+                return prodModel.getName().toLowerCase().contains(keyword) || 
+                        String.valueOf(prodModel.getPrice()).toLowerCase().contains(keyword) ||
+                        prodModel.getModel().toLowerCase().contains(keyword) ||
+                        prodModel.getBrand().toLowerCase().contains(keyword) ||
+                        prodModel.getCategory().toLowerCase().contains(keyword);
+            });
+        });
+        SortedList prodSort = new SortedList(filter);
+        viewProduct.setItems(prodSort);
+
+    }
 
     @FXML
     private void btn_logout(ActionEvent event) {
-        new Alert(Alert.AlertType.CONFIRMATION,"Are you sure you want to logout?").showAndWait().ifPresent(response->{
-            if (response == ButtonType.OK){
+        new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to logout?").showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
                 try {
                     App.setRoot("FXML_FirstScreen");
                 } catch (IOException ex) {
@@ -71,17 +150,17 @@ public class FXML_ViewProductController implements Initializable {
     }
 
     @FXML
-    private void homeButton(ActionEvent event) throws IOException{
+    private void homeButton(ActionEvent event) throws IOException {
         App.setRoot("FXML_Dashboard");
     }
 
     @FXML
     private void addProductButton(ActionEvent event) throws IOException {
-                Stage newWindow = new Stage();
-                newWindow.setTitle("Add Product");
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("FXML_AddProduct.fxml"));
-                newWindow.setScene(new Scene(loader.load()));
-                newWindow.show();
+        Stage newWindow = new Stage();
+        newWindow.setTitle("Add Product");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXML_AddProduct.fxml"));
+        newWindow.setScene(new Scene(loader.load()));
+        newWindow.show();
     }
 
     @FXML
@@ -94,8 +173,5 @@ public class FXML_ViewProductController implements Initializable {
         App.setRoot("FXML_ManageProduct");
     }
 
-    @FXML
-    private void searchbtn(ActionEvent event) {
-    }
-    
+
 }

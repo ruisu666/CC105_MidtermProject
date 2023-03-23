@@ -71,7 +71,6 @@ public class FXML_AddProductController implements Initializable {
     }
 
     private Connection conn = null;
-    private Connection con = null;
     private PreparedStatement statement;
     private ResultSet result;
     

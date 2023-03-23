@@ -57,6 +57,7 @@ public class FXML_DashboardController implements Initializable{
             if (response == ButtonType.OK){
                 try {
                     App.setRoot("FXML_FirstScreen");
+                    App.setCurrUser(null);
                 } catch (IOException ex) {
                     Logger.getLogger(FXML_DashboardController.class.getName()).log(Level.SEVERE, null, ex);
                 }
