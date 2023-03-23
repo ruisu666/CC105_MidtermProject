@@ -82,7 +82,6 @@ public class FXML_AddProductController implements Initializable {
         }));
 
     }
-
     private Connection conn = null;
     private PreparedStatement statement;
     private ResultSet result;
@@ -96,23 +95,20 @@ public class FXML_AddProductController implements Initializable {
         }
         return null;
     }
+    
+    public void clearTxtfld()
+        {
+          txt_productName.setText("");
+          txt_productPrice.setText("");
+          txt_productModelnum.setText("");
+          txt_productBrand.setText("");
+          txt_productQuantity.setText("");
+          cb_category.setValue("");
+         }
 
     private void addProductButton(ActionEvent event) throws IOException {
         App.setRoot("FXML_AddProduct");
     }
-
-    private void btn_logout(ActionEvent event) {
-        new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to logout?").showAndWait().ifPresent(response -> {
-            if (response == ButtonType.OK) {
-                try {
-                    App.setRoot("FXML_FirstScreen");
-                } catch (IOException ex) {
-                    Logger.getLogger(FXML_DashboardController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-    }
-
     @FXML
     private void btn_addProduct(ActionEvent event) {
 
@@ -172,6 +168,7 @@ public class FXML_AddProductController implements Initializable {
                         statement = conn.prepareStatement(sql);
                         statement.executeUpdate();
                         new Alert(Alert.AlertType.INFORMATION, "Succesfully added!").show();
+                        clearTxtfld();
                     } catch (SQLException e) {
                         System.out.println(e.getMessage());
                     }
