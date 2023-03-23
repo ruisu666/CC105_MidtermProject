@@ -43,17 +43,17 @@
                <children>
                   <TableView fx:id="viewProduct" prefHeight="463.0" prefWidth="721.0">
                     <columns>
-                      <TableColumn prefWidth="211.20001220703125" text="Name" />
-                      <TableColumn prefWidth="107.99993896484375" text="Price" />
-                        <TableColumn prefWidth="55.20001220703125" text="Quantity" />
-                        <TableColumn prefWidth="86.39996337890625" text="Model" />
-                        <TableColumn prefWidth="140.0" text="Brand" />
-                        <TableColumn prefWidth="115.199951171875" text="Category" />
+                      <TableColumn fx:id="colName" prefWidth="211.20001220703125" text="Name" />
+                      <TableColumn fx:id="colPrice" prefWidth="107.99993896484375" text="Price" />
+                        <TableColumn fx:id="colQuantity" prefWidth="55.20001220703125" text="Quantity" />
+                        <TableColumn fx:id="colModel" prefWidth="86.39996337890625" text="Model" />
+                        <TableColumn fx:id="colBrand" prefWidth="140.0" text="Brand" />
+                        <TableColumn fx:id="colCat" prefWidth="115.199951171875" text="Category" />
                     </columns>
                   </TableView>
                </children>
             </Pane>
-            <AnchorPane layoutX="30.0" layoutY="91.0" prefHeight="57.0" prefWidth="384.0" styleClass="table-view" stylesheets="@dashboardDesign.css">
+            <AnchorPane layoutX="30.0" layoutY="91.0" prefHeight="57.0" prefWidth="296.0" styleClass="table-view" stylesheets="@dashboardDesign.css">
                <children>
                   <Label layoutX="17.0" layoutY="16.0" prefHeight="25.0" prefWidth="61.0" text="SEARCH:" textFill="WHITE">
                      <font>
@@ -61,7 +61,6 @@
                      </font>
                   </Label>
                   <TextField fx:id="textSearch" layoutX="80.0" layoutY="15.0" prefHeight="25.0" prefWidth="185.0" />
-                  <Button fx:id="searchbtn" layoutX="283.0" layoutY="15.0" mnemonicParsing="false" onAction="#searchbtn" prefHeight="26.0" prefWidth="78.0" styleClass="update-btn" stylesheets="@dashboardDesign.css" text="Home" />
                   
                </children>
             </AnchorPane>
