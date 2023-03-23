@@ -21,6 +21,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javax.swing.JOptionPane;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -41,6 +42,10 @@ public class ProtoController implements Initializable {
     private Button btnLogn;
     @FXML
     private Button btn_balik;
+    @FXML
+    private CheckBox cb_showPassword;
+    @FXML
+    private TextField txt_showPassword;
     /**
      * Initializes the controller class.
      * @param url
@@ -48,7 +53,7 @@ public class ProtoController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        this.actionshowPassword(null);
     }    
     
     //Database Tools
@@ -66,6 +71,7 @@ public class ProtoController implements Initializable {
         }
             return null;
     }
+
     @FXML
     public void btn_login (ActionEvent event){
         conn = connectDB();
@@ -97,5 +103,17 @@ public class ProtoController implements Initializable {
         App.setRoot("FXML_FirstScreen");
     }
 
-
+    @FXML
+    private void actionshowPassword(ActionEvent event) {
+        if (cb_showPassword.isSelected()) {
+            txt_showPassword.setText(lbl_password.getText());
+            txt_showPassword.setVisible(true);
+            lbl_password.setVisible(false);
+            return;
+        } else {
+            lbl_password.setText(txt_showPassword.getText());
+            lbl_password.setVisible(true);
+            txt_showPassword.setVisible(false);
+        }
+    }
 }
