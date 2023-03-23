@@ -68,13 +68,14 @@ public class FXML_ViewProductController implements Initializable {
     private TableColumn<ProductModel, String> colModel;
     @FXML
     private TableColumn<ProductModel, String> colCat;
-
+    @FXML
+    private TableColumn<ProductModel, String> colBrand;
+    
     private ObservableList<ProductModel> prodList = FXCollections.observableArrayList();
     
     private Connection conn = null;
     private PreparedStatement stmnt = null;
-    @FXML
-    private TableColumn<?, ?> colBrand;
+
 
     /**
      * Initializes the controller class.
