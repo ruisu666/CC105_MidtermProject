@@ -22,6 +22,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -33,6 +34,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -97,7 +99,7 @@ public class FXML_ViewProductController implements Initializable {
         ResultSet result = stmnt.executeQuery();
         prodList.clear();
         while(result.next()){
-            prodList.add(new ProductModel(result.getString("productName"),result.getInt("productPrice"),result.getInt("productQuantity"),result.getString("productModel"),result.getString("productBrand"),result.getString("productCategory")));
+            prodList.add(new ProductModel(result.getInt("prodID"),result.getString("productName"),result.getInt("productPrice"),result.getInt("productQuantity"),result.getString("productModel"),result.getString("productBrand"),result.getString("productCategory")));
         }
     }
 
@@ -161,7 +163,9 @@ public class FXML_ViewProductController implements Initializable {
         newWindow.setTitle("Add Product");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("FXML_AddProduct.fxml"));
         newWindow.setScene(new Scene(loader.load()));
-        newWindow.show();
+        newWindow.initModality(Modality.APPLICATION_MODAL);
+        newWindow.initOwner(((Node) event.getSource()).getScene().getWindow());
+        newWindow.showAndWait();
     }
 
     @FXML

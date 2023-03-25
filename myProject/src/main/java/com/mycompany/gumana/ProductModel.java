@@ -9,6 +9,7 @@ package com.mycompany.gumana;
  * @author Ranillo
  */
 public class ProductModel {
+    private int id;
     private String name;
     private int price;
     private int quantity;
@@ -16,7 +17,8 @@ public class ProductModel {
     private String brand;
     private String category;
 
-    public ProductModel(String name, int price, int quantity, String model, String brand, String category) {
+    public ProductModel(int id, String name, int price, int quantity, String model, String brand, String category) {
+        this.id = id;
         this.name = name;
         this.price = price;
         this.quantity = quantity;
@@ -24,6 +26,16 @@ public class ProductModel {
         this.brand = brand;
         this.category = category;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
 
     public String getName() {
         return name;
