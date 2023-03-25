@@ -152,16 +152,8 @@ public class FXML_ManageProductController implements Initializable {
     }
 
     @FXML
-    private void homeButton(ActionEvent event) {
-        new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to logout?").showAndWait().ifPresent(response -> {
-            if (response == ButtonType.OK) {
-                try {
-                    App.setRoot("FXML_FirstScreen");
-                } catch (IOException ex) {
-                    Logger.getLogger(FXML_DashboardController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
+    private void homeButton(ActionEvent event) throws IOException {
+        App.setRoot("FXML_Dashboard");
     }
 
     @FXML
