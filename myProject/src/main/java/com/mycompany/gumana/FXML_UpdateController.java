@@ -96,7 +96,8 @@ public class FXML_UpdateController implements Initializable {
             conn = DriverManager.getConnection("jdbc:mysql://localhost/myproject_db", "root", "");
             return conn;
         } catch (SQLException e) {
-            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).showAndWait();
+            System.out.println(e.getMessage());
         }
         return null;
     }
@@ -168,7 +169,8 @@ public class FXML_UpdateController implements Initializable {
                         new Alert(Alert.AlertType.INFORMATION, "Succesfully Updated!").showAndWait();
                         
                     } catch (SQLException e) {
-                        new Alert(Alert.AlertType.INFORMATION, e.getMessage()).showAndWait();
+                           new Alert(Alert.AlertType.ERROR, e.getMessage()).showAndWait();
+                           System.out.println(e.getMessage());
                     }
                 }
             }

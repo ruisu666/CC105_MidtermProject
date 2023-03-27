@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.gumana.FXML_ViewProductController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.gumana.FXML_UserDashboardController">
    <children>
       <AnchorPane layoutY="-3.0" prefHeight="726.0" prefWidth="306.0" styleClass="nav-form" stylesheets="@dashboardDesign.css">
          <children>
@@ -44,36 +44,34 @@
       </AnchorPane>
       <Pane layoutX="306.0" prefHeight="720.0" prefWidth="774.0" styleClass="card" stylesheets="@dashboardDesign.css">
          <children>
-            <Label layoutX="30.0" layoutY="25.0" text="PRODUCT DETAILS" textFill="WHITE">
+            <Label layoutX="164.0" layoutY="97.0" text="COMPUTER HARDWARE" textFill="WHITE">
+               <font>
+                  <Font name="Tahoma" size="42.0" />
+               </font>
+            </Label>
+            <Label layoutX="211.0" layoutY="150.0" text="MONITORING SYSTEM" textFill="WHITE">
+               <font>
+                  <Font name="Tahoma" size="35.0" />
+               </font>
+            </Label>
+            <Line endX="7.79998779296875" endY="6.399993896484375" layoutX="637.0" layoutY="207.0" startX="-500.20001220703125" startY="6.399993896484375" stroke="WHITE" />
+            <Label layoutX="45.0" layoutY="261.0" text="SUMMARY" textFill="WHITE">
                <font>
                   <Font name="Tahoma" size="26.0" />
                </font>
             </Label>
-            <Pane layoutX="27.0" layoutY="157.0" prefHeight="463.0" prefWidth="721.0" styleClass="table-view" stylesheets="@dashboardDesign.css">
+            <Pane layoutX="30.0" layoutY="310.0" prefHeight="320.0" prefWidth="326.0" styleClass="table-view" stylesheets="@dashboardDesign.css">
                <children>
-                  <TableView fx:id="viewProduct" prefHeight="463.0" prefWidth="721.0">
-                    <columns>
-                      <TableColumn fx:id="colName" prefWidth="211.20001220703125" text="Name" />
-                      <TableColumn fx:id="colPrice" prefWidth="107.99993896484375" text="Price" />
-                        <TableColumn fx:id="colQuantity" prefWidth="55.20001220703125" text="Quantity" />
-                        <TableColumn fx:id="colModel" prefWidth="86.39996337890625" text="Model" />
-                        <TableColumn fx:id="colBrand" prefWidth="140.0" text="Brand" />
-                        <TableColumn fx:id="colCat" prefWidth="115.199951171875" text="Category" />
-                    </columns>
-                  </TableView>
+                  <BarChart fx:id="homeTotalMonitoredChart" prefHeight="320.0" prefWidth="326.0" styleClass="top-form" stylesheets="@dashboardDesign.css" title="Total Stocks Chart">
+                     <xAxis>
+                        <CategoryAxis side="BOTTOM" />
+                     </xAxis>
+                     <yAxis>
+                        <NumberAxis side="LEFT" />
+                     </yAxis>
+                  </BarChart>
                </children>
             </Pane>
-            <AnchorPane layoutX="30.0" layoutY="91.0" prefHeight="57.0" prefWidth="294.0" styleClass="table-view" stylesheets="@dashboardDesign.css">
-               <children>
-                  <Label layoutX="17.0" layoutY="16.0" prefHeight="25.0" prefWidth="61.0" text="SEARCH:" textFill="WHITE">
-                     <font>
-                        <Font name="Arial" size="12.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="textSearch" layoutX="80.0" layoutY="15.0" prefHeight="25.0" prefWidth="185.0" />
-                  
-               </children>
-            </AnchorPane>
          </children>
       </Pane>
    </children>

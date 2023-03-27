@@ -81,6 +81,8 @@ public class FXML_ManageProductController implements Initializable {
     private ProductModel selectedProd = null;
     private Connection conn = null;
     private PreparedStatement stmnt = null;
+    @FXML
+    private Label accountType;
 
     /**
      * Initializes the controller class.
@@ -100,7 +102,8 @@ public class FXML_ManageProductController implements Initializable {
             conn = DriverManager.getConnection("jdbc:mysql://localhost/myproject_db", "root", "");
             return conn;
         } catch (SQLException e) {
-            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).showAndWait();
+            System.out.println(e.getMessage());
         }
         return null;
     }
@@ -118,6 +121,7 @@ public class FXML_ManageProductController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         username.setText(App.getCurrUser().getUsername());
+        accountType.setText(App.getCurrType().getUserType());
 
         try {
             RefreshProdList();
@@ -161,7 +165,8 @@ public class FXML_ManageProductController implements Initializable {
                 try {
                     App.setRoot("FXML_FirstScreen");
                 } catch (IOException ex) {
-                    Logger.getLogger(FXML_DashboardController.class.getName()).log(Level.SEVERE, null, ex);
+                    new Alert(Alert.AlertType.ERROR, ex.getMessage()).showAndWait();
+                    System.out.println(ex.getMessage());
                 }
             }
         });
@@ -208,6 +213,7 @@ public class FXML_ManageProductController implements Initializable {
             SelectedProd.getINSTANCE().setSelectedProd(null);
         } catch (IOException | SQLException ex) {
             new Alert(Alert.AlertType.ERROR, ex.getMessage()).show();
+            System.out.println(ex.getMessage());
         }
     }
 
@@ -224,6 +230,7 @@ public class FXML_ManageProductController implements Initializable {
                 RefreshProdList();
             } catch (SQLException ex) {
                 new Alert(Alert.AlertType.ERROR, ex.getMessage()).show();
+                System.out.println(ex.getMessage());
             }
         }
 
@@ -241,5 +248,4 @@ public class FXML_ManageProductController implements Initializable {
             btn_update.setDisable(true);
         }
     }
-
 }

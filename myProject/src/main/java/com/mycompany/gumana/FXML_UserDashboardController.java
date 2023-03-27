@@ -3,17 +3,13 @@ package com.mycompany.gumana;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.BarChart;
-import javafx.scene.chart.LineChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -21,7 +17,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class FXML_DashboardController implements Initializable{
+public class FXML_UserDashboardController implements Initializable{
 
     
     @FXML
@@ -45,10 +41,12 @@ public class FXML_DashboardController implements Initializable{
     public void initialize(URL url, ResourceBundle rb) {
         username.setText(App.getCurrUser().getUsername());
         accountType.setText(App.getCurrType().getUserType());
+        disablebtns();
     }    
 
     @FXML
     private void addProductButton(ActionEvent event) throws IOException{
+        
                 Stage newWindow = new Stage();
                 newWindow.setTitle("Add Product");
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("FXML_AddProduct.fxml"));
@@ -75,12 +73,12 @@ public class FXML_DashboardController implements Initializable{
 
     @FXML
     private void homeButton(ActionEvent event) throws IOException {
-        App.setRoot("FXML_Dashboard");
+        App.setRoot("FXML_UserDashboard");
     }
 
     @FXML
     private void actionViewProducts(ActionEvent event) throws IOException {
-        App.setRoot("FXML_UserViewProduct");
+        App.setRoot("FXML_ViewProduct");
     }
 
     @FXML

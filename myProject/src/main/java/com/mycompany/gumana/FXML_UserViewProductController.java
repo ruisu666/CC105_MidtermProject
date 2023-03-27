@@ -42,7 +42,7 @@ import javafx.stage.Stage;
  *
  * @author Luis
  */
-public class FXML_ViewProductController implements Initializable {
+public class FXML_UserViewProductController implements Initializable {
 
     @FXML
     private Label username;
@@ -108,6 +108,7 @@ public class FXML_ViewProductController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        disablebtns();
         username.setText(App.getCurrUser().getUsername());
         accountType.setText(App.getCurrType().getUserType());
         try {
@@ -183,6 +184,9 @@ public class FXML_ViewProductController implements Initializable {
     private void actionManageProducts(ActionEvent event) throws IOException {
         App.setRoot("FXML_ManageProduct");
     }
-
+    private void disablebtns() {
+        addProductButton.setDisable(true);
+        manageProductsbtn.setDisable(true);
+    }
 
 }

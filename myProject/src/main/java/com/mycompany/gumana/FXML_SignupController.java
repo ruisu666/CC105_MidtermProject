@@ -55,6 +55,12 @@ public class FXML_SignupController implements Initializable {
     private CheckBox cb_showPassword;
     @FXML
     private TextField txt_showPassword;
+    @FXML
+    private RadioButton ra_user;
+    @FXML
+    private ToggleGroup tg_userType;
+    @FXML
+    private RadioButton ra_admin;
     
 
     /**
@@ -74,7 +80,8 @@ public class FXML_SignupController implements Initializable {
             conn = DriverManager.getConnection("jdbc:mysql://localhost/myproject_db","root","");
             return conn;
         }catch (SQLException e){
-            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).showAndWait();
+            System.out.println(e.getMessage());
             return null;
         }
             
@@ -82,7 +89,7 @@ public class FXML_SignupController implements Initializable {
     @FXML
     private void btn_register(ActionEvent event){
         conn = connectDB();
-        String Username, Password, lastName, firstName;
+        String Username, Password, lastName, firstName, gender, userType;
         firstName = txt_firstName.getText();
         lastName = txt_lastName.getText();
         Username = txt_username.getText();
@@ -126,11 +133,15 @@ public class FXML_SignupController implements Initializable {
             alrt.show();
             return;
         }
-        String gender;
         if(ra_male.isSelected()){
-        gender = "Male";
+            gender = "Male";
         } else {
-        gender = "Female";
+            gender = "Female";
+        }
+        if (ra_user.isSelected()){
+            userType = "User";
+        } else {
+            userType = "Administrator";
         }
         
         new Alert(Alert.AlertType.CONFIRMATION, "Do you want to continue to register?").showAndWait().ifPresent(new Consumer<ButtonType>() {
@@ -138,16 +149,17 @@ public class FXML_SignupController implements Initializable {
             public void accept(ButtonType response) {
                 if (response == ButtonType.OK) {
                     try {
-                        String sql = "INSERT INTO `tbl_accounts`(`lastName`,`firstName`,`gender`,`username`, `password`) VALUES ('"+lastName+"','"+firstName+"','"+gender+"','"+Username+"','"+Password+"')";                  
+                        String sql = "INSERT INTO `tbl_accounts`(`lastName`,`firstName`,`gender`,`username`, `password`, `userType`) VALUES ('"+lastName+"','"+firstName+"','"+gender+"','"+Username+"','"+Password+"','"+userType+"')";                  
                         statement = conn.prepareStatement(sql);
                         statement.execute();
                         App.setRoot("FXML_Login");
-                        new Alert(Alert.AlertType.INFORMATION,"Succesfully registered").show();
+                        new Alert(Alert.AlertType.INFORMATION,"Succesfully registered as "+userType+"").show();
                     } catch (IOException e) {
                         System.out.println(e.getMessage());
                     } catch (SQLException x){
-                        x.printStackTrace();
+                        new Alert(Alert.AlertType.INFORMATION, x.getMessage()).showAndWait();
                         new Alert(Alert.AlertType.WARNING,"This "+Username+" already exists").show();
+                        System.out.println(x.getMessage());
                     }
                 }
             }
@@ -164,7 +176,6 @@ public class FXML_SignupController implements Initializable {
             txt_showPassword.setText(txt_password.getText());
             txt_showPassword.setVisible(true);
             txt_password.setVisible(false);
-            return;
         } else {
             txt_password.setText(txt_showPassword.getText());
             txt_password.setVisible(true);

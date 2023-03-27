@@ -90,7 +90,8 @@ public class FXML_AddProductController implements Initializable {
             conn = DriverManager.getConnection("jdbc:mysql://localhost/myproject_db", "root", "");
             return conn;
         } catch (SQLException e) {
-            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).showAndWait();
+            System.out.println(e.getMessage());
         }
         return null;
     }
@@ -170,6 +171,8 @@ public class FXML_AddProductController implements Initializable {
                         clearTxtfld();
                     } catch (SQLException e) {
                         System.out.println(e.getMessage());
+                            new Alert(Alert.AlertType.ERROR, e.getMessage()).showAndWait();
+                            System.out.println(e.getMessage());
                     }
                 }
             }

@@ -10,22 +10,16 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javax.swing.JOptionPane;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
@@ -67,7 +61,8 @@ public class ProtoController implements Initializable {
             conn = DriverManager.getConnection("jdbc:mysql://localhost/myproject_db","root","");
             return conn;
         }catch (Exception e){
-            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).showAndWait();
+            System.out.println(e.getMessage());
         }
             return null;
     }
@@ -75,7 +70,6 @@ public class ProtoController implements Initializable {
     @FXML
     public void btn_login (ActionEvent event){
         conn = connectDB();
-        System.out.println("umabot hanggang dito");
         try{
             String sql = "SELECT * FROM tbl_accounts WHERE username = ? and password = ?";
             statement = conn.prepareStatement(sql);
@@ -84,17 +78,29 @@ public class ProtoController implements Initializable {
             result = statement.executeQuery();
             
             if(result.next()){
-                
-                new Alert(Alert.AlertType.INFORMATION,"Succesfully logged in!").show();
-                App.setCurrUser(new UserModel(result.getString("firstName")));
-                App.setRoot("FXML_Dashboard");
-                
+                String user = result.getString("userType");
+                if (user.contains("Administrator")){
+                    new Alert(Alert.AlertType.INFORMATION,"Succesfully logged in!").show();
+                    App.setCurrUser(new UserModel(result.getString("firstName")));
+                    App.setCurrType(new UserType(result.getString("userType")));
+                    App.setRoot("FXML_Dashboard");
+                }
+                else if (user.contains("User")){
+                    new Alert(Alert.AlertType.INFORMATION,"Succesfully logged in!").show();
+                    App.setCurrUser(new UserModel(result.getString("firstName")));
+                    App.setCurrType(new UserType(result.getString("userType")));
+                    App.setRoot("FXML_UserDashboard");
+                }
+    
             } else {
                 new Alert(Alert.AlertType.ERROR,"Invalid Username or Password!").show();
                 App.setRoot("FXML_Login");
             }
-        }catch (Exception e){
-            e.printStackTrace();
+        }catch (IOException | SQLException e){
+                new Alert(Alert.AlertType.ERROR, e.getMessage()).showAndWait();
+                System.out.println(e.getMessage());
+                System.out.println("eto nagrun");
+                e.printStackTrace();
         }
     }
 
@@ -109,7 +115,6 @@ public class ProtoController implements Initializable {
             txt_showPassword.setText(lbl_password.getText());
             txt_showPassword.setVisible(true);
             lbl_password.setVisible(false);
-            return;
         } else {
             lbl_password.setText(txt_showPassword.getText());
             lbl_password.setVisible(true);

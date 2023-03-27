@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.gumana.FXML_ViewProductController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.gumana.FXML_UserViewProductController">
    <children>
       <AnchorPane layoutY="-3.0" prefHeight="726.0" prefWidth="306.0" styleClass="nav-form" stylesheets="@dashboardDesign.css">
          <children>
@@ -27,9 +27,9 @@
             <Line endX="-130.5999755859375" endY="6.399993896484375" layoutX="401.0" layoutY="132.0" startX="-369.3999328613281" startY="6.399993896484375" stroke="WHITE" />
             <Button fx:id="btn_logout" layoutX="72.0" layoutY="616.0" mnemonicParsing="false" onAction="#btn_logout" prefHeight="35.0" prefWidth="150.0" styleClass="add-btn" stylesheets="@dashboardDesign.css" text="Logout" />
             <Button fx:id="homeButton" layoutX="48.0" layoutY="236.0" mnemonicParsing="false" onAction="#homeButton" prefHeight="46.0" prefWidth="197.0" styleClass="update-btn" stylesheets="@dashboardDesign.css" text="Home" />
-            <Button fx:id="addProductButton" layoutX="46.0" layoutY="306.0" mnemonicParsing="false" onAction="#addProductButton" prefHeight="48.0" prefWidth="199.0" styleClass="update-btn" stylesheets="@dashboardDesign.css" text="Add a Product" />
+            <Button fx:id="addProductButton" disable="true" layoutX="46.0" layoutY="306.0" mnemonicParsing="false" onAction="#addProductButton" prefHeight="48.0" prefWidth="199.0" styleClass="update-btn" stylesheets="@dashboardDesign.css" text="Add a Product" />
             <Button fx:id="viewDetailsbtn" layoutX="46.0" layoutY="377.0" mnemonicParsing="false" onAction="#actionViewProducts" prefHeight="50.0" prefWidth="198.0" styleClass="update-btn" stylesheets="@dashboardDesign.css" text="Product Details" />
-            <Button fx:id="manageProductsbtn" layoutX="46.0" layoutY="455.0" mnemonicParsing="false" onAction="#actionManageProducts" prefHeight="50.0" prefWidth="198.0" styleClass="update-btn" stylesheets="@dashboardDesign.css" text="Manage Products" />
+            <Button fx:id="manageProductsbtn" disable="true" layoutX="46.0" layoutY="455.0" mnemonicParsing="false" onAction="#actionManageProducts" prefHeight="50.0" prefWidth="198.0" styleClass="update-btn" stylesheets="@dashboardDesign.css" text="Manage Products" />
             <Label layoutX="73.0" layoutY="147.0" text="You are logged in as" textFill="WHITE">
                <font>
                   <Font name="Tahoma" size="16.0" />
