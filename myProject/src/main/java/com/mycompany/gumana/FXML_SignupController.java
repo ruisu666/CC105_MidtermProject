@@ -129,6 +129,11 @@ public class FXML_SignupController implements Initializable {
             alrt.setTitle(INVALID_INPUT);
             alrt.setContentText(alrt.getContentText() + "Missing Gender\n");
         }
+        if (!ra_user.isSelected() && !ra_admin.isSelected()) {
+            invalidInp = true;
+            alrt.setTitle(INVALID_INPUT);
+            alrt.setContentText(alrt.getContentText() + "Missing User Type\n");        
+        }
         if(invalidInp){
             alrt.show();
             return;
