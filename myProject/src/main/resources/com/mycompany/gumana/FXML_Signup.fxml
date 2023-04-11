@@ -15,7 +15,7 @@
    <children>
       <AnchorPane layoutX="182.0" layoutY="23.0" prefHeight="668.0" prefWidth="767.0" styleClass="nav-form" stylesheets="@dashboardDesign.css">
          <children>
-            <Button fx:id="btn_register" layoutX="253.0" layoutY="564.0" mnemonicParsing="false" onAction="#btn_register" prefHeight="60.0" prefWidth="259.0" styleClass="update-btn" text="Register">
+            <Button fx:id="btn_register" layoutX="254.0" layoutY="574.0" mnemonicParsing="false" onAction="#btn_register" prefHeight="60.0" prefWidth="259.0" styleClass="update-btn" text="Register">
                <font>
                   <Font name="Arial Bold" size="21.0" />
                </font>

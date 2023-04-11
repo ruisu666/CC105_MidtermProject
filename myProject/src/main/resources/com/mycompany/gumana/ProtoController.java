@@ -81,15 +81,17 @@ public class ProtoController implements Initializable {
                 String user = result.getString("userType");
                 if (user.contains("Administrator")){
                     new Alert(Alert.AlertType.INFORMATION,"Succesfully logged in!").show();
-                    App.setCurrUser(new UserModel(result.getString("firstName")));
-                    App.setCurrType(new UserType(result.getString("userType")));
+                    App.setCurrUser(new UserModel(result.getString("firstName") ,result.getString("userType")));
+                    
                     App.setRoot("FXML_Dashboard");
+                    System.out.println("login as admin");
                 }
                 else if (user.contains("User")){
                     new Alert(Alert.AlertType.INFORMATION,"Succesfully logged in!").show();
-                    App.setCurrUser(new UserModel(result.getString("firstName")));
-                    App.setCurrType(new UserType(result.getString("userType")));
+                    App.setCurrUser(new UserModel(result.getString("firstName"),result.getString("userType")));
+                    
                     App.setRoot("FXML_UserDashboard");
+                    System.out.println("login as user");
                 }
     
             } else {
@@ -99,7 +101,7 @@ public class ProtoController implements Initializable {
         }catch (IOException | SQLException e){
                 new Alert(Alert.AlertType.ERROR, e.getMessage()).showAndWait();
                 System.out.println(e.getMessage());
-                System.out.println("eto nagrun");
+                System.out.println("catch nagrun");
                 e.printStackTrace();
         }
     }

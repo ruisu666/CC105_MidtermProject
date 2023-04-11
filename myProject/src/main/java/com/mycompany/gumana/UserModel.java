@@ -11,9 +11,11 @@ package com.mycompany.gumana;
  */
 public class UserModel {
     private String username;
+    private String type;
 
-    public UserModel(String username) {
+    public UserModel(String username,String type) {
         this.username = username;
+        this.type=type;
     }
 
     public String getUsername() {
@@ -23,5 +25,14 @@ public class UserModel {
     public void setUsername(String username) {
         this.username = username;
     }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+    
     
 }

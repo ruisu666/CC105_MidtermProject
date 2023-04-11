@@ -121,7 +121,7 @@ public class FXML_ManageProductController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         username.setText(App.getCurrUser().getUsername());
-        accountType.setText(App.getCurrType().getUserType());
+        accountType.setText(App.getCurrUser().getType());
 
         try {
             RefreshProdList();

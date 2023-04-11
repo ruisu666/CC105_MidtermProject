@@ -35,16 +35,12 @@ public class FXML_DashboardController implements Initializable{
     @FXML
     private Button manageProductsbtn;
     @FXML
-    private BarChart<?, ?> homeTotalMonitoredChart;
-    @FXML
-    private Button viewDetailsbtn;
-    @FXML
     private Label accountType;
     
         @Override
     public void initialize(URL url, ResourceBundle rb) {
         username.setText(App.getCurrUser().getUsername());
-        accountType.setText(App.getCurrType().getUserType());
+        accountType.setText(App.getCurrUser().getType());
     }    
 
     @FXML
@@ -80,7 +76,7 @@ public class FXML_DashboardController implements Initializable{
 
     @FXML
     private void actionViewProducts(ActionEvent event) throws IOException {
-        App.setRoot("FXML_UserViewProduct");
+        App.setRoot("FXML_ViewProduct");
     }
 
     @FXML
@@ -88,8 +84,4 @@ public class FXML_DashboardController implements Initializable{
         App.setRoot("FXML_ManageProduct");
     }
     
-    private void disablebtns() {
-        addProductButton.setDisable(true);
-        manageProductsbtn.setDisable(true);
-    }
 }

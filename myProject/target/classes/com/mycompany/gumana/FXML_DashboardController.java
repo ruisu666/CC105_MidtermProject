@@ -35,13 +35,12 @@ public class FXML_DashboardController implements Initializable{
     @FXML
     private Button manageProductsbtn;
     @FXML
-    private BarChart<?, ?> homeTotalMonitoredChart;
-    @FXML
-    private Button viewDetailsbtn;
+    private Label accountType;
     
         @Override
     public void initialize(URL url, ResourceBundle rb) {
         username.setText(App.getCurrUser().getUsername());
+        accountType.setText(App.getCurrUser().getType());
     }    
 
     @FXML
@@ -63,7 +62,8 @@ public class FXML_DashboardController implements Initializable{
                     App.setRoot("FXML_FirstScreen");
                     App.setCurrUser(null);
                 } catch (IOException ex) {
-                    Logger.getLogger(FXML_DashboardController.class.getName()).log(Level.SEVERE, null, ex);
+                    new Alert(Alert.AlertType.ERROR, ex.getMessage()).showAndWait();
+                    System.out.println(ex.getMessage());
                 }
             }
         });
@@ -83,4 +83,5 @@ public class FXML_DashboardController implements Initializable{
     private void actionManageProducts(ActionEvent event) throws IOException {
         App.setRoot("FXML_ManageProduct");
     }
+    
 }

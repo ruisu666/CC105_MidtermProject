@@ -26,10 +26,20 @@
             </Label>
             <Line endX="-130.5999755859375" endY="6.399993896484375" layoutX="401.0" layoutY="132.0" startX="-369.3999328613281" startY="6.399993896484375" stroke="WHITE" />
             <Button fx:id="btn_logout" layoutX="72.0" layoutY="616.0" mnemonicParsing="false" onAction="#btn_logout" prefHeight="35.0" prefWidth="150.0" styleClass="add-btn" stylesheets="@dashboardDesign.css" text="Logout" />
-            <Button fx:id="homeButton" layoutX="48.0" layoutY="190.0" mnemonicParsing="false" onAction="#homeButton" prefHeight="46.0" prefWidth="197.0" styleClass="update-btn" stylesheets="@dashboardDesign.css" text="Home" />
-            <Button fx:id="addProductButton" layoutX="46.0" layoutY="265.0" mnemonicParsing="false" onAction="#addProductButton" prefHeight="48.0" prefWidth="199.0" styleClass="update-btn" stylesheets="@dashboardDesign.css" text="Add a Product" />
-            <Button fx:id="viewDetailsbtn" layoutX="48.0" layoutY="338.0" mnemonicParsing="false" onAction="#actionViewProducts" prefHeight="50.0" prefWidth="198.0" styleClass="update-btn" stylesheets="@dashboardDesign.css" text="Product Details" />
-            <Button fx:id="manageProductsbtn" layoutX="47.0" layoutY="413.0" mnemonicParsing="false" onAction="#actionManageProducts" prefHeight="50.0" prefWidth="198.0" styleClass="update-btn" stylesheets="@dashboardDesign.css" text="Manage Products" />
+            <Button fx:id="homeButton" layoutX="48.0" layoutY="236.0" mnemonicParsing="false" onAction="#homeButton" prefHeight="46.0" prefWidth="197.0" styleClass="update-btn" stylesheets="@dashboardDesign.css" text="Home" />
+            <Button fx:id="addProductButton" layoutX="46.0" layoutY="306.0" mnemonicParsing="false" onAction="#addProductButton" prefHeight="48.0" prefWidth="199.0" styleClass="update-btn" stylesheets="@dashboardDesign.css" text="Add a Product" />
+            <Button fx:id="viewDetailsbtn" layoutX="46.0" layoutY="377.0" mnemonicParsing="false" onAction="#actionViewProducts" prefHeight="50.0" prefWidth="198.0" styleClass="update-btn" stylesheets="@dashboardDesign.css" text="Product Details" />
+            <Button fx:id="manageProductsbtn" layoutX="46.0" layoutY="455.0" mnemonicParsing="false" onAction="#actionManageProducts" prefHeight="50.0" prefWidth="198.0" styleClass="update-btn" stylesheets="@dashboardDesign.css" text="Manage Products" />
+            <Label layoutX="73.0" layoutY="147.0" text="You are logged in as" textFill="WHITE">
+               <font>
+                  <Font name="Tahoma" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="accountType" layoutX="97.0" layoutY="167.0" text="Account Type" textFill="WHITE">
+               <font>
+                  <Font name="Tahoma" size="16.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <Pane layoutX="306.0" prefHeight="720.0" prefWidth="774.0" styleClass="card" stylesheets="@dashboardDesign.css">

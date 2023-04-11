@@ -15,7 +15,6 @@ public class App extends Application {
 
     private static Scene scene;
     private static UserModel currUser = null;
-    private static UserType currType = null;
 
     public static UserModel getCurrUser() {
         return currUser;
@@ -23,13 +22,6 @@ public class App extends Application {
 
     public static void setCurrUser(UserModel currUser) {
         App.currUser = currUser;
-    }
-    public static UserType getCurrType() {
-        return currType;
-    }
-
-    public static void setCurrType(UserType currType) {
-        App.currType = currType;
     }
     @Override
     public void start(Stage stage) throws IOException {

@@ -40,7 +40,7 @@ public class FXML_UserDashboardController implements Initializable{
         @Override
     public void initialize(URL url, ResourceBundle rb) {
         username.setText(App.getCurrUser().getUsername());
-        accountType.setText(App.getCurrType().getUserType());
+        accountType.setText(App.getCurrUser().getType());
         disablebtns();
     }    
 
@@ -78,7 +78,7 @@ public class FXML_UserDashboardController implements Initializable{
 
     @FXML
     private void actionViewProducts(ActionEvent event) throws IOException {
-        App.setRoot("FXML_ViewProduct");
+        App.setRoot("FXML_UserViewProduct");
     }
 
     @FXML

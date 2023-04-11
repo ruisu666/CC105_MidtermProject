@@ -110,7 +110,7 @@ public class FXML_UserViewProductController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         disablebtns();
         username.setText(App.getCurrUser().getUsername());
-        accountType.setText(App.getCurrType().getUserType());
+        accountType.setText(App.getCurrUser().getType());
         try {
             RefreshProdList();
         } catch (SQLException ex) {
